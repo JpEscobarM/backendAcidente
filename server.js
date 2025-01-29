@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 const corsOptions = {
-  origin: "https://frontendacidente.vercel.app", // Apenas este domínio pode acessar o backend
+  origin: "https://acidente-planetaagua.vercel.app/", // Apenas este domínio pode acessar o backend
   methods: "GET,POST", // Permite apenas requisições GET e POST
   allowedHeaders: "Content-Type", // Permite apenas cabeçalhos com "Content-Type"
 };
