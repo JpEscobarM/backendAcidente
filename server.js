@@ -6,7 +6,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: "https://frontendacidente.vercel.app", // Apenas este domínio pode acessar o backend
+  methods: "GET,POST", // Permite apenas requisições GET e POST
+  allowedHeaders: "Content-Type", // Permite apenas cabeçalhos com "Content-Type"
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // Conectar ao banco SQLite
