@@ -27,7 +27,7 @@ const db = new sqlite3.Database("./accidents.db", (err) => {
 
     // Criar tabela de recorde e inicializar se não existir
     db.run("CREATE TABLE IF NOT EXISTS record (id INTEGER PRIMARY KEY, max_days INTEGER)");
-    db.run("INSERT OR IGNORE INTO record (id, max_days) VALUES (1, 0)");
+    db.run("INSERT OR IGNORE INTO record (id, max_days) VALUES (1, 40)");
   }
 });
 
@@ -103,7 +103,7 @@ app.post("/accident", (req, res) => {
           return res.status(500).json({ error: err.message });
         }
 
-        res.json({ message: "✅ Data atualizada com sucesso!", date });
+        res.json({ message: " Data atualizada com sucesso!", date });
       });
     });
   });
