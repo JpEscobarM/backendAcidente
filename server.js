@@ -45,7 +45,7 @@ app.get("/record", (req, res) => {
     if (err) {
       res.status(500).json({ error: err.message });
     } else {
-      res.json({recordDays: row ? row.record : 40});
+      res.json({recordDays: row ? row.record : 0});
     }
   });
 });
@@ -94,6 +94,21 @@ app.post("/reset", (req, res) => {
     db.run("DELETE FROM accidents");
     db.run("DELETE FROM record");
     res.json({ message: "Base de dados limpa com sucesso." });
+  });
+});
+
+
+app.post("/record", (req, res) => {
+  const { recordDays } = req.body;
+  if (recordDays == null) {
+    return res.status(400).json({ error: "Valor inválido para record" });
+  }
+
+  db.run("INSERT OR REPLACE INTO record (id, record) VALUES (1, ?)", [recordDays], function (err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json({ message: "Record atualizado com sucesso!", recordDays });
   });
 });
 
